@@ -12,6 +12,7 @@ declare module '@apollo/client' {
   export function useMutation(...args: any[]): any;
   export function useSubscription(...args: any[]): any;
   export const GraphQLWsLink: any;
+  export const gql: any;
   export const createHttpLink: any;
   export const ApolloLink: any;
 }
