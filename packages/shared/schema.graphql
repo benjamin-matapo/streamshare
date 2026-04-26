@@ -1,0 +1,45 @@
+type Session {
+  id: ID!
+  name: String!
+  currentSlideIndex: Int!
+  slides: [Slide!]!
+}
+
+type Slide {
+  id: ID!
+  type: SlideType!
+  content: String!
+  order: Int!
+}
+
+enum SlideType { TEXT  IMAGE  VIDEO  IFRAME }
+
+type Reaction { id: ID!  emoji: String!  sessionId: ID! }
+
+type Question {
+  id: ID!  text: String!  upvotes: Int!  answered: Boolean!
+}
+
+type Query {
+  session(id: ID!): Session
+  sessions: [Session!]!
+  questions(sessionId: ID!): [Question!]!
+}
+
+type Mutation {
+  createSession(name: String!): Session!
+  addSlide(sessionId: ID!, type: SlideType!, content: String!, order: Int!): Slide!
+  nextSlide(sessionId: ID!): Session!
+  prevSlide(sessionId: ID!): Session!
+  goToSlide(sessionId: ID!, index: Int!): Session!
+  sendReaction(sessionId: ID!, emoji: String!): Reaction!
+  askQuestion(sessionId: ID!, text: String!): Question!
+  upvoteQuestion(questionId: ID!): Question!
+}
+
+type Subscription {
+  sessionUpdated(sessionId: ID!): Session!
+  newReaction(sessionId: ID!): Reaction!
+  newQuestion(sessionId: ID!): Question!
+  questionUpvoted(sessionId: ID!): Question!
+}
