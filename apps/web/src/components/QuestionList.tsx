@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery, useMutation, useSubscription } from '@apollo/client';
+import { useQuery, useMutation, useSubscription } from '@apollo/client/react/hooks';
 import { GET_QUESTIONS } from '../graphql/queries';
 import { ASK_QUESTION, UPVOTE_QUESTION } from '../graphql/mutations';
 import { NEW_QUESTION, QUESTION_UPVOTED } from '../graphql/subscriptions';

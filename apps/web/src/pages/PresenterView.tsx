@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useQuery, useSubscription } from '@apollo/client';
+import { useQuery, useSubscription } from '@apollo/client/react/hooks';
 import { GET_SESSION } from '../graphql/queries';
 import { SESSION_UPDATED } from '../graphql/subscriptions';
 import PresenterControls from '../components/PresenterControls';

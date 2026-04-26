@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client/react/hooks';
 import { GET_SESSION } from '../graphql/queries';
 import EmojiBar from '../components/EmojiBar';
 import QuestionList from '../components/QuestionList';
