@@ -10,7 +10,7 @@ const wsLink = new GraphQLWsLink(createClient({
 }));
 
 const splitLink = split(
-  ({ query }) => {
+  ({ query }: { query: any }) => {
     const def = getMainDefinition(query);
     return def.kind === 'OperationDefinition' && def.operation === 'subscription';
   },
