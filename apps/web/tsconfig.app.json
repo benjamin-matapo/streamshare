@@ -8,8 +8,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    // Switch to Node resolution for better compatibility with Apollo Client exports
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
