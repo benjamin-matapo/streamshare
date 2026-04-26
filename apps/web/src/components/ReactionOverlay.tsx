@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { useSubscription } from '@apollo/client/react/hooks';
+import { useSubscription } from '@apollo/client';
 import { NEW_REACTION } from '../graphql/subscriptions';
 
 export default function ReactionOverlay({ sessionId }: { sessionId: string }) {

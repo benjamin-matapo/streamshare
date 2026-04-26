@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMutation } from '@apollo/client/react/hooks';
+import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { CREATE_SESSION } from '../graphql/mutations';
 import { Play } from 'lucide-react';

@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client/react/hooks';
+import { useMutation } from '@apollo/client';
 import { SEND_REACTION } from '../graphql/mutations';
 
 const EMOJIS = ['🔥', '👏', '❤️', '🤯', '😂', '🎉'];
