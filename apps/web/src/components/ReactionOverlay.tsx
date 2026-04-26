@@ -9,9 +9,9 @@ export default function ReactionOverlay({ sessionId }: { sessionId: string }) {
     setReactions(prev => prev.filter(r => r.key !== id));
   }, []);
 
-  useSubscription(NEW_REACTION, {
+useSubscription(NEW_REACTION, {
     variables: { sessionId },
-    onData: ({ data }) => {
+    onData: ({ data }: { data: any }) => {
       const reaction = data.data.newReaction;
       const xPos = Math.random() * 80 + 10; // 10% to 90%
       const key = Math.random().toString();
