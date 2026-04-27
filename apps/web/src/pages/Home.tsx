@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import JoinQR from '../components/JoinQR'
 import { useNavigate } from 'react-router-dom';
 import { CREATE_SESSION } from '../graphql/mutations';
 import { Play } from 'lucide-react';
@@ -8,12 +9,16 @@ export default function Home() {
   const [name, setName] = useState('');
   const [createSession, { loading }] = useMutation(CREATE_SESSION);
   const navigate = useNavigate();
+  const [createdSession, setCreatedSession] = useState<{ id: string } | null>(null);
 
   const handleCreate = async () => {
     if (!name.trim()) return;
     try {
       const { data } = await createSession({ variables: { name } });
-      navigate(`/present/${data.createSession.id}`);
+      const id = data.createSession.id;
+      setCreatedSession({ id });
+      // Optionally navigate after showing QR; for now, keep the UI on this page to show QR codes
+      // navigate(`/present/${id}`);
     } catch (e) {
       console.error(e);
     }
@@ -45,6 +50,20 @@ export default function Home() {
             {loading ? 'Creating...' : 'Create Session'}
           </button>
         </div>
+        {createdSession && (
+          <div className="mt-6 border-t border-border pt-4">
+            <div className="text-sm text-muted mb-2">Join using QR codes</div>
+            <JoinQR sessionId={createdSession.id} />
+            <div className="mt-2 flex justify-between">
+              <a href={`${window.location.origin}/view/${createdSession.id}`} className="text-xs text-accent" target="_blank" rel="noreferrer">Viewer Link</a>
+              <a href={`${window.location.origin}/audience/${createdSession.id}`} className="text-xs text-accent" target="_blank" rel="noreferrer">Audience Link</a>
+              <button
+                onClick={() => navigate(`/present/${createdSession.id}`)}
+                className="ml-2 bg-accent text-white px-3 py-1 rounded"
+              >Open Session</button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
